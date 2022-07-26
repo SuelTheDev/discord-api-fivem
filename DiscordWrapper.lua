@@ -11,7 +11,7 @@ Discord = {}
 ---@return boolean
 function Discord:HasUserInServer(discordUserId)
     if discordUserId then
-        return discord:HasUserInDiscord(discordUserId)
+        return discord:HasUserInServer(discordUserId)
     end
     return false
 end

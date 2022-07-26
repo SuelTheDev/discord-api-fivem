@@ -1,7 +1,7 @@
 module.exports = {
   name: 'interactionCreate',
   on: true,
-  execute: async (interaction) => {
+  execute: async (interaction, fivemexports) => {
     if (!interaction.isChatInputCommand()) return;
 
 	const command = client.commands.get(interaction.commandName);

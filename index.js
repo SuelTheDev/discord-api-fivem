@@ -8,7 +8,7 @@ const { REST } = require('@discordjs/rest')
 const { Routes } = require('discord.js')
 const DiscordFivem = require('./fivem/exports')
 
-const resourcePath = GetResourcePath(GetCurrentResourceName())
+const resourcePath = global.GetResourcePath ? global.GetResourcePath(global.GetCurrentResourceName()) : global.__dirname
 
 // Create a new client instance
 const client = new Client({
@@ -42,9 +42,9 @@ eventsFiles.forEach(file => {
   const filepath = path.join(eventsPath, file)
   const evt = require(filepath)
   if (evt.once) {
-    client.once(evt.name, (...args) => evt.execute(...args))
+    client.once(evt.name, (...args) => evt.execute(...args, global.exports))
   } else {
-    client.on(evt.name, (...args) => evt.execute(...args))
+    client.on(evt.name, (...args) => evt.execute(...args, global.exports))
   }
 })
 
